@@ -29,20 +29,20 @@ on:
 
 jobs:
   sync_docs:
-    name: Sync repos
+    name: job bar
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current version
-        uses: actions/checkout@v2
-      - name: Create files to sync
-        run: |
-          touch VERSION.md
-          echo tagBAR > VERSION.md
-      - name: Sync with local action
-        uses: kai-tub/external-repo-sync-action@v1
-        with:
-          source-directory: "."
-          branch: "main"
-          repository: "AprendaCloud/foo"
-        env:
-          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+    - name: bar
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Automated Change
+
+        branch: main
+
+        # Optional. Local file path to the repository.
+        # Defaults to the root of the repository.
+        repository: AprendaCloud/foo
+
+        commit_user_name: My GitHub Actions Bot # defaults to "github-actions[bot]"
+        commit_user_email: my-github-actions-bot@example.org # defaults to "github-actions[bot]@users.noreply.github.com"
+        commit_author: Author <actions@github.com> # defaults to author of the commit that triggered the run
