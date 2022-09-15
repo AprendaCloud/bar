@@ -37,10 +37,12 @@ jobs:
       - name: Create files to sync
         run: |
           touch VERSION.md
+          echo tagBAR > VERSION.md
       - name: Sync with local action
         uses: kai-tub/external-repo-sync-action@v1
         with:
           source-directory: "."
+          branch: "main"
           repository: "AprendaCloud/foo"
         env:
           GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
